@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Recipe App</title>
+	<link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <nav>
+	  <h1>Recipe App</h1>
+    </nav>
+    <div class="container">
+	   <!-- Add recipes form -->
+       <div class="left-column">
+        <h3>Add Recipe</h3>
+        <form action="/recepie/add" method="POST" >
+          <label for="recipe-name">Name:</label>
+          <input type="text" id="recipe-name" name="name" required>
+          <br>
+          <label for="recipe-ingredients">Ingredients:</label>
+          <textarea id="recipe-ingredients" name="ingredients" rows="5" required></textarea>
+          <br>
+          <label for="recipe-method">Method:</label>
+          <textarea id="recipe-method" name="method" rows="5" required></textarea>
+          <br>
+          <button type="submit">Add Recipe</button>
+        </form>
+      </div>
+	  <!-- Search bar/view recipes list -->
+	  <div class="right-column">
+		<div id="search-section">
+          <h3>Recipes List</h3>
+          <label for="search-box">Search:</label>
+          <input type="text" id="search-box">
+        </div>
+        <div id="recipe-list"></div>
+        <% if (recipes.length > 0) { %>
+          <ul>
+            <% for (var i = 0; i < recipes.length; i++) { %>
+              <h3> <%= recipes[i].name %></h3>
+      <p><strong>Ingredients:</strong></p>
+      <ul>
+        <% for (var j = 0; j < recipes[i].ingredients.length; j++) { %>
+        <li><%=recipes[i].ingredients[j]%></li>
+        
+        <% } %>
+      </ul>
+      <p><strong>Method:</strong></p>
+      <p><%= recipes[i].method %></p>
+      <button class="delete-button" data-index="${index}">Delete</button>`
+            <% } %>
+          </ul>
+        <% } else { %>
+          <div id="no-recipes">You have no recipes.</div>
+        <% } %>
+		
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
